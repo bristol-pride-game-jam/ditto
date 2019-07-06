@@ -17,6 +17,19 @@ public class Influence : MonoBehaviour
     {
         system = GetComponent<ParticleSystem>();
         player = FindObjectOfType<InfluenceAbsorption>();
+
+        var colourProportions = GetInfluenceProportions();
+        var colour = new Color(colourProportions.x, colourProportions.y, colourProportions.z);
+
+        var renderer = GetComponent<MeshRenderer>();
+        renderer.material.color = colour;
+
+        var particleColours = system.colorOverLifetime;
+        particleColours.enabled = true;
+        var gradient = new Gradient();
+        gradient.SetKeys(new GradientColorKey[] { new GradientColorKey(colour, 0f), new GradientColorKey(colour, 1f) }, 
+            new GradientAlphaKey[] { new GradientAlphaKey(1f, 0.66f), new GradientAlphaKey(0f, 1f) });
+        particleColours.color = gradient;
     }
 
     // Update is called once per frame
@@ -36,6 +49,8 @@ public class Influence : MonoBehaviour
 
     private void ShowParticles()
     {
+        
+
         if (Influencing)
         {
             if (!system.isPlaying)
