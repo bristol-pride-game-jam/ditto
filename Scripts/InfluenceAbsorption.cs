@@ -25,11 +25,19 @@ public class InfluenceAbsorption : MonoBehaviour
     private void AbsorbFromNearbyInfluences()
     {
         var influences = FindObjectsOfType<Influence>();
-        var nearbyInfluences = influences.Where(i => Vector3.Distance(transform.position, i.transform.position) <= absorptionRadius);
-        foreach (Influence nearbyInfluence in nearbyInfluences)
+        
+        foreach (Influence influencer in influences)
         {
-            Vector3 influenceProportions = nearbyInfluence.GetInfluenceProportions();
-            Accumulation += influenceProportions * maxAbsorptionRate * Time.deltaTime;
+            if (Vector3.Distance(transform.position, influencer.transform.position) <= absorptionRadius)
+            {
+                influencer.Influencing = true;
+                Vector3 influenceProportions = influencer.GetInfluenceProportions();
+                Accumulation += influenceProportions * maxAbsorptionRate * Time.deltaTime;
+            } 
+            else
+            {
+                influencer.Influencing = false;
+            }
         }
     }
 }
