@@ -5,22 +5,32 @@ using UnityEngine;
 
 public class InfluenceAbsorption : MonoBehaviour
 {
-    public Vector3 Accumulation { get; private set; } = new Vector3();
-
-    public float absorptionRadius = 1.0f;
-    public float maxAbsorptionRate = 1.0f;
-
-
-    // Start is called before the first frame update
-    void Start()
+    public Vector3 Accumulation
     {
-        
+        get
+        {
+            return new Vector3(r, g, b);
+        }
     }
 
-    // Update is called once per frame
+    private float r = 0f;
+    private float g = 0f;
+    private float b = 0f;
+
+    public float absorptionRadius = 10.0f;
+    public float absorptionPerSecond = 0.1f;
+
+    private Renderer rend;
+
+    void Start()
+    {
+        rend = GetComponent<Renderer>();
+    }
+
     void Update()
     {
         AbsorbFromNearbyInfluences();
+        rend.material.SetVector("_Influence", Accumulation);
     }
 
     private void AbsorbFromNearbyInfluences()
@@ -33,7 +43,16 @@ public class InfluenceAbsorption : MonoBehaviour
             {
                 influencer.Influencing = true;
                 Vector3 influenceProportions = influencer.GetInfluenceProportions();
-                Accumulation += influenceProportions * maxAbsorptionRate * Time.deltaTime;
+                r = Mathf.Min(r + (influenceProportions.x * absorptionPerSecond * Time.deltaTime), 1f);
+                g = Mathf.Min(g + (influenceProportions.y * absorptionPerSecond * Time.deltaTime), 1f);
+                b = Mathf.Min(b + (influenceProportions.z * absorptionPerSecond * Time.deltaTime), 1f);
+
+                if (r + g + b >= 2.2f)
+                {
+                    r = 0;
+                    g = 0;
+                    b = 0;
+                }
             } 
             else
             {
