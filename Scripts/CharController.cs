@@ -1,6 +1,8 @@
 using System.Collections;
 using System.Collections.Generic;
-using UnityEngine;public class CharController : MonoBehaviour {
+using UnityEngine;
+
+public class CharController : MonoBehaviour {
     [SerializeField] float moveSpeed = 4f;
     Vector3 forward, right;
 
