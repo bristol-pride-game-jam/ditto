@@ -61,7 +61,9 @@ public class Pusher : MonoBehaviour
             //Move
             {
                 if (moveCoroutine == null) {
-                    moveCoroutine = StartCoroutine("BuildVelocity");
+                    if (ferocity > activationFerocity) {
+                        moveCoroutine = StartCoroutine("BuildVelocity");
+                    }
                 }
             }
         } else {
@@ -74,7 +76,7 @@ public class Pusher : MonoBehaviour
     Coroutine moveCoroutine;
     IEnumerator BuildVelocity () {
         do {
-            Debug.Log(targetFacingAngleChange);
+            //Debug.Log(targetFacingAngleChange);
             float targetFacingSpeedMod = 0.1f;
             //float engageDistanceSpeedMod = Mathf.Lerp(0, 1, (targetDistance)/(engageDistance - engageFullDistance));
 
@@ -83,8 +85,8 @@ public class Pusher : MonoBehaviour
             }else if (targetFacingAngleChange > 270) {
                 targetFacingSpeedMod = Mathf.Lerp(0, 1, (targetFacingAngleChange-270) / 90);
             }
-            speedCurrent = Mathf.Min((acceleration * Time.deltaTime) + speedCurrent, Mathf.Lerp(0, speedMax, ferocity * targetFacingSpeedMod ));
-
+            speedCurrent = Mathf.Min((acceleration * Time.deltaTime) + speedCurrent, Mathf.Lerp(0, speedMax, ferocity * targetFacingSpeedMod));
+            //Debug.Log(speedCurrent);
             ownBody.velocity = transform.up * speedCurrent;
 
             
