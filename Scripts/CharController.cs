@@ -1,4 +1,4 @@
-﻿using System.Collections;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;public class CharController : MonoBehaviour {
     [SerializeField] float moveSpeed = 4f;
@@ -19,7 +19,7 @@ using UnityEngine;public class CharController : MonoBehaviour {
         forward = Vector3.Normalize(forward);
         right = Quaternion.Euler(new Vector3(0, 90, 0)) * forward;*/
     }
-    
+
     void Update()
     {
         if(Input.anyKey)
@@ -48,7 +48,7 @@ using UnityEngine;public class CharController : MonoBehaviour {
         Pusher pusher = other.GetComponent<Pusher>();
         if (pusher != null) {
             pusher.engaging = true;
-        }   
+        }
     }
 
     public void OnTriggerExit2D (Collider2D other) {
