@@ -2,11 +2,14 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+[RequireComponent(typeof(ParticleSystem))]
 public class Influence : MonoBehaviour
 {
-    public float C;
-    public float M;
-    public float Y;
+    public float R;
+    public float G;
+    public float B;
+
+    [HideInInspector]
     public bool Influencing;
 
     private ParticleSystem system;
@@ -21,7 +24,7 @@ public class Influence : MonoBehaviour
         var colourProportions = GetInfluenceProportions();
         var colour = new Color(colourProportions.x, colourProportions.y, colourProportions.z);
 
-        var renderer = GetComponent<MeshRenderer>();
+        var renderer = GetComponent<Renderer>();
         renderer.material.SetVector("_Influence", colour);
 
         var particleColours = system.colorOverLifetime;
@@ -35,7 +38,7 @@ public class Influence : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        AlignInfluenceParticles();
+        //AlignInfluenceParticles();
         ShowParticles();
     }
 
@@ -51,8 +54,6 @@ public class Influence : MonoBehaviour
 
     private void ShowParticles()
     {
-        
-
         if (Influencing)
         {
             if (!system.isPlaying)
@@ -68,6 +69,6 @@ public class Influence : MonoBehaviour
 
     public Vector3 GetInfluenceProportions()
     {
-        return new Vector3(C, M, Y).normalized;
+        return new Vector3(R, G, B).normalized;
     }
 }
