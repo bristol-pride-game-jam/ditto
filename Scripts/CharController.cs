@@ -16,10 +16,6 @@ public class CharController : MonoBehaviour {
 
     void Start()
     {
-        /*forward = Camera.main.transform.forward;
-        forward.y = 0;
-        forward = Vector3.Normalize(forward);
-        right = Quaternion.Euler(new Vector3(0, 90, 0)) * forward;*/
     }
 
     void Update()
@@ -27,22 +23,14 @@ public class CharController : MonoBehaviour {
         if(Input.anyKey)
             Move();
 
-        playerCamera.transform.position = new Vector3 (transform.position.x, transform.position.y, playerCamera.transform.position.z);
+        playerCamera.transform.position = new Vector3(transform.position.x, transform.position.y, playerCamera.transform.position.z);
     }
 
     void Move()
     {
-        //Vector3 direction = new Vector3(Input.GetAxis("Horizontal"), Input.GetAxis("Vertical"), 0);
-        //Vector3 rightMovement = right * moveSpeed * Time.deltaTime * Input.GetAxis("Horizontal");
-        //Vector3 upMovement = forward * moveSpeed * Time.deltaTime * Input.GetAxis("Vertical");
         float rightMovement = moveSpeed * Time.deltaTime * Input.GetAxis("Horizontal");
         float upMovement = moveSpeed * Time.deltaTime * Input.GetAxis("Vertical");
-        //Debug.Log(new Vector3(rightMovement, upMovement, 0f));
-        ownBody.velocity = new Vector3 (rightMovement, upMovement, 0f);
-        //Vector3 heading = Vector3.Normalize(rightMovement + upMovement);
-        //transform.forward = heading;
-        //transform.position += rightMovement;
-        //transform.position += upMovement;
+        ownBody.velocity = new Vector3(rightMovement, upMovement, 0f);
     }
 
     public void OnTriggerEnter2D (Collider2D other) {
