@@ -22,7 +22,7 @@ public class Influence : MonoBehaviour
         var colour = new Color(colourProportions.x, colourProportions.y, colourProportions.z);
 
         var renderer = GetComponent<MeshRenderer>();
-        renderer.material.color = colour;
+        renderer.material.SetVector("_Influence", colour);
 
         var particleColours = system.colorOverLifetime;
         particleColours.enabled = true;
@@ -43,7 +43,9 @@ public class Influence : MonoBehaviour
     {
         var particleRotation = system.shape;
         var directionToPlayer = player.transform.position - transform.position;
-        var angleFromYOrigin = Vector3.Angle(Vector3.forward, directionToPlayer);
+        var angleBetweenSelfAndPlayer = Vector3.Angle(Vector3.forward, directionToPlayer);
+        var angleFromYOrigin = player.transform.position.x >= transform.position.x ? angleBetweenSelfAndPlayer : 360 - angleBetweenSelfAndPlayer;
+
         particleRotation.rotation = new Vector3(90, angleFromYOrigin, 0.5f);
     }
 
