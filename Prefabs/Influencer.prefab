@@ -9,14 +9,14 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4627232195480426186}
+  - component: {fileID: 4627232195480426190}
+  - component: {fileID: 6998043046331501534}
   - component: {fileID: 4627232195480426185}
   - component: {fileID: 4627232195480426184}
   - component: {fileID: 4627232195480426191}
-  - component: {fileID: 4627232195480426190}
   - component: {fileID: 4627232195480426228}
   - component: {fileID: 4627232195480426187}
   - component: {fileID: 6998043046331501511}
-  - component: {fileID: 6998043046331501534}
   m_Layer: 0
   m_Name: Influencer
   m_TagString: Untagged
@@ -38,6 +38,48 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &4627232195480426190
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4627232195480426189}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 22b0a9bcfc0d0034faad7905505e6ef1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  R: 0
+  G: 0
+  B: 0
+  Influencing: 0
+--- !u!114 &6998043046331501534
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4627232195480426189}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f5e2cf6784902a6468e632262d88cab0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ferocity: 1
+  canEngage: 0
+  engageDistance: 5
+  speedMax: 50
+  velocityAcceleration: 0
+  speedCurrent: 0
+  rotationSpeed: 5
+  activationFerocity: 0.2
+  engageFullDistance: 3
+  target: {fileID: 0}
+  acceleration: 1
+  minimumInfluenceRequired: {x: 0, y: 0, z: 0}
+  maximumInfluenceAllowed: {x: 1, y: 1, z: 1}
+  moveSpeed: 0
 --- !u!33 &4627232195480426185
 MeshFilter:
   m_ObjectHideFlags: 0
@@ -97,22 +139,6 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 1, y: 1, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
---- !u!114 &4627232195480426190
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4627232195480426189}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 22b0a9bcfc0d0034faad7905505e6ef1, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  R: 0
-  G: 0
-  B: 0
-  Influencing: 0
 --- !u!198 &4627232195480426228
 ParticleSystem:
   m_ObjectHideFlags: 0
@@ -4850,29 +4876,3 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
---- !u!114 &6998043046331501534
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4627232195480426189}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f5e2cf6784902a6468e632262d88cab0, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  ferocity: 1
-  canEngage: 0
-  engageDistance: 5
-  speedMax: 50
-  velocityAcceleration: 0
-  speedCurrent: 0
-  rotationSpeed: 5
-  activationFerocity: 0.2
-  engageFullDistance: 3
-  target: {fileID: 0}
-  acceleration: 1
-  minimumInfluenceRequired: {x: 0, y: 0, z: 0}
-  maximumInfluenceAllowed: {x: 1, y: 1, z: 1}
-  moveSpeed: 0
